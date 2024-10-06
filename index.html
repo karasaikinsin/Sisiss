@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Показать мой IP-адрес</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #ipDisplay {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ваш IP-адрес</h1>
+    <button id="showIpButton">Показать</button>
+    <div id="ipDisplay"></div>
+
+    <script>
+        document.getElementById('showIpButton').addEventListener('click', function() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ipDisplay').innerText = 'Ваш IP-адрес: ' + data.ip;
+                })
+                .catch(error => {
+                    document.getElementById('ipDisplay').innerText = 'Не удалось получить IP-адрес';
+                    console.error('Ошибка:', error);
+                });
+        });
+    </script>
+
+</body>
+</html>

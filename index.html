@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Показать мой IP-адрес</title>
+    <title>Узнать Айпи Адрес</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 50px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #ipBox {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
         }
         #ipDisplay {
-            margin-top: 20px;
-            font-size: 24px;
+            font-size: 18px;
+            margin: 10px 0;
             font-weight: bold;
+        }
+        #showIpButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #showIpButton:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
-    <h1>Ваш IP-адрес</h1>
-    <button id="showIpButton">Показать</button>
-    <div id="ipDisplay"></div>
+    <h1>Узнать Айпи Адрес</h1>
+    <hr>
+    <div id="ipBox">
+        <div id="ipDisplay">Ваш IP: Тут айпи</div>
+        <button id="showIpButton">Узнать</button>
+    </div>
 
     <script>
         document.getElementById('showIpButton').addEventListener('click', function() {
             fetch('https://api.ipify.org?format=json')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('ipDisplay').innerText = 'Ваш IP-адрес: ' + data.ip;
+                    document.getElementById('ipDisplay').innerText = 'Ваш IP: ' + data.ip;
                 })
                 .catch(error => {
                     document.getElementById('ipDisplay').innerText = 'Не удалось получить IP-адрес';
